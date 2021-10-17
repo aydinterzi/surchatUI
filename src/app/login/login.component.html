@@ -1,0 +1,30 @@
+  <div class="row vh-100 ">
+    <div class="col-8 bg-secondary">
+    </div>
+    <div class="col-4 bg-white">
+      <form [formGroup]="userForm" (ngSubmit)="login()">
+        <div class="row">
+          <div class="mx-auto col-8">
+            <p class="fs-2 mb-5 fw-bold" style="margin-top: 150px;" >Login</p>
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control " id="username" placeholder="Username" formControlName="username">
+              <div *ngIf="username?.touched && username?.invalid" class="alert alert-danger">
+                    name is required
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control " id="password" placeholder="Password" formControlName="password">
+            </div>
+            <div class="d-grid mb-3">
+              <button type="submit" class="btn btn-primary">Sign In</button>
+            </div>
+            <div class="mb-3">
+              <p>Don't have an account yet? <a class="text-decoration-none" [routerLink]="['/signup']" >Join Surchat</a></p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

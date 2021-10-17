@@ -1,0 +1,39 @@
+<div class="row vh-100 ">
+<div class="col-8 bg-primary">
+    <div>
+
+    </div>
+  </div>
+  <div class="col-4 bg-white">
+    <form [formGroup]="userForm" (ngSubmit)="signUp()">
+      <div class="row">
+        <div class="mx-auto col-8">
+          <p class="fs-2 mb-5 fw-bold" style="margin-top: 150px;" >Register</p>
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control " id="username" placeholder="Username" formControlName="username">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control " id="email" placeholder="Email" formControlName="email">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control " id="password" placeholder="Password" formControlName="password">
+          </div>
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control " id="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword">
+          </div>
+          <div class="d-grid mb-3">
+            <button type="submit" class="btn btn-primary">Create account</button>
+          </div>
+          <div class="mb-3">
+            <p>Already have account? <a class="text-decoration-none" [routerLink]="['/login']" >Log in</a></p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
