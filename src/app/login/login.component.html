@@ -9,13 +9,20 @@
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
               <input type="text" class="form-control " id="username" placeholder="Username" formControlName="username">
-              <div *ngIf="username?.touched && username?.invalid" class="alert alert-danger">
-                    name is required
+              <div *ngIf="username?.touched && username?.invalid" class="alert alert-danger" role="alert">
+                    <ul>
+                      <li *ngIf="username?.errors?.required">Name is required.</li>
+                    </ul>
               </div>
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <input type="password" class="form-control " id="password" placeholder="Password" formControlName="password">
+              <div *ngIf="password?.touched && password?.invalid" class="alert alert-danger" role="alert">
+                <ul>
+                  <li *ngIf="password?.errors?.required">Password is required.</li>
+                </ul>
+          </div>
             </div>
             <div class="d-grid mb-3">
               <button type="submit" class="btn btn-primary">Sign In</button>

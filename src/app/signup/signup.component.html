@@ -12,18 +12,43 @@
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" class="form-control " id="username" placeholder="Username" formControlName="username">
+            <div *ngIf="username?.touched && username?.invalid" class="alert alert-danger" role="alert">
+              <ul>
+                <li *ngIf="username?.errors?.required">Name is required.</li>
+                <li *ngIf="username?.errors?.minlength">Username must be at least 5 characters.</li>
+                <li *ngIf="username?.errors?.maxlength">Username must be maximum of 20 characters.</li>
+              </ul>
+            </div>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="text" class="form-control " id="email" placeholder="Email" formControlName="email">
+            <div *ngIf="email?.touched && email?.invalid" class="alert alert-danger" role="alert">
+              <ul>
+                <li *ngIf="email?.errors?.required">Email is required.</li>
+                <li *ngIf="email?.errors?.email">The Email field must contain a valid email address.</li>
+              </ul>
+            </div>
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control " id="password" placeholder="Password" formControlName="password">
+            <div *ngIf="password?.touched && password?.invalid" class="alert alert-danger" role="alert">
+              <ul>
+                <li *ngIf="password?.errors?.required">Password is required.</li>
+                <li *ngIf="password?.errors?.minlength">Password must be at least 5 characters.</li>
+                <li *ngIf="password?.errors?.maxlength">Password must be maximum of 20 characters.</li>
+              </ul>
+            </div>
           </div>
           <div class="mb-3">
             <label for="confirmPassword" class="form-label">Confirm Password</label>
             <input type="password" class="form-control " id="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword">
+            <div *ngIf="confirmPassword?.touched && confirmPassword?.invalid" class="alert alert-danger" role="alert">
+              <ul>
+                <li *ngIf="confirmPassword?.errors?.required">Name is required.</li>
+              </ul>
+            </div>
           </div>
           <div class="d-grid mb-3">
             <button type="submit" class="btn btn-primary">Create account</button>
