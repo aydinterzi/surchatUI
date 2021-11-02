@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService:AuthService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -19,7 +21,13 @@ export class SignupComponent implements OnInit {
     confirmPassword:new FormControl("",[Validators.required])
   });
   signUp(){
-    console.log(this.userForm.value);
+    this.authService.register(this.userForm.value).subscribe(()=>{
+      console.log("kullanıcı oluşturuldu");
+      this.router.navigate(["/login"]);
+    },error=>{
+      console.log(error);
+    }
+    );
   }
   get username(){return this.userForm.get('username');}
   get password(){return this.userForm.get('password');}
