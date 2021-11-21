@@ -9,6 +9,9 @@ import { SignupComponent } from './signup/signup.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './_guards/auth_guard';
+import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { NewSurveyComponent } from './new-survey/new-survey.component';
 
 
 @NgModule({
@@ -16,6 +19,9 @@ import { AuthGuard } from './_guards/auth_guard';
     AppComponent,
     LoginComponent,
     SignupComponent,
+    HomeComponent,
+    NavbarComponent,
+    NewSurveyComponent,
   ],
   imports: [
     BrowserModule,
