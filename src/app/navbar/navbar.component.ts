@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewSurveyComponent } from '../new-survey/new-survey.component';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,8 +11,8 @@ import { NewSurveyComponent } from '../new-survey/new-survey.component';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router:Router,private modalService:NgbModal) { }
-
+  constructor(private router:Router,private modalService:NgbModal,private authService:AuthService) { }
+  userId:number=this.authService.decodedToken?.nameid;
   ngOnInit(): void {
   }
   logOut(){
@@ -20,5 +21,6 @@ export class NavbarComponent implements OnInit {
   }
   newSurvey(){
     const modalRef=this.modalService.open(NewSurveyComponent);
+    modalRef.componentInstance.userId=this.userId;
   }
 }

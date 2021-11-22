@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../_services/auth.service';
+import { SurveyService } from '../_services/survey.service';
 
 @Component({
   selector: 'app-new-survey',
@@ -7,16 +11,23 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./new-survey.component.css']
 })
 export class NewSurveyComponent implements OnInit {
-
-  constructor(private activeModal:NgbActiveModal) { }
+  @Input() userId:number;
+  constructor(private activeModal:NgbActiveModal,private http:HttpClient,private surveyService:SurveyService,private authService:AuthService) { }
 
   ngOnInit(): void {
   }
+  surveyForm=new FormGroup({
+    Title:new FormControl(""),
+    Time:new FormControl("")
+  });
   closeModal(){
     this.activeModal.close();
   }
 
   createSurvey(){
-
+    this.surveyService.createSurvey(this.surveyForm.value,this.authService.decodedToken?.nameid).subscribe(next=>{
+      console.log("next");
+    });
+    console.log("hey");
   }
 }
