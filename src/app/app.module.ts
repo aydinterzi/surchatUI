@@ -12,6 +12,7 @@ import { AuthGuard } from './_guards/auth_guard';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NewSurveyComponent } from './new-survey/new-survey.component';
+import { ExistSurveysComponent } from './exist-surveys/exist-surveys.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { NewSurveyComponent } from './new-survey/new-survey.component';
     HomeComponent,
     NavbarComponent,
     NewSurveyComponent,
+    ExistSurveysComponent,
   ],
   imports: [
     BrowserModule,

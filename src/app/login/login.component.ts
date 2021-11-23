@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     this.authService.decodedToken=this.helper.decodeToken(token);
   }
     console.log("basarili");
+    this.router.navigate (["/home"]);
   },error=>{
     console.log("login hatalı");
   })
