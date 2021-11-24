@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NewSurveyComponent } from './new-survey/new-survey.component';
 import { ExistSurveysComponent } from './exist-surveys/exist-surveys.component';
+import { JoinsurveyComponent } from './joinsurvey/joinsurvey.component';
+import { SurveyComponent } from './survey/survey.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { ExistSurveysComponent } from './exist-surveys/exist-surveys.component';
     NavbarComponent,
     NewSurveyComponent,
     ExistSurveysComponent,
+    JoinsurveyComponent,
+    SurveyComponent,
   ],
   imports: [
     BrowserModule,

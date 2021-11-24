@@ -28,6 +28,5 @@ export class NewSurveyComponent implements OnInit {
     this.surveyService.createSurvey(this.surveyForm.value,this.authService.decodedToken?.nameid).subscribe(next=>{
       console.log("next");
     });
-    console.log("hey");
   }
 }
