@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Surveys } from '../Models/DTO/Surveys';
+import { AuthService } from '../_services/auth.service';
 import { SurveyService } from '../_services/survey.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { SurveyService } from '../_services/survey.service';
 })
 export class ExistSurveysComponent implements OnInit {
 
-  constructor(private survey:SurveyService) { }
+  constructor(private survey:SurveyService,private authService:AuthService) { }
   surveys:Surveys[];
   ngOnInit(): void {
   this.getSurveys();
