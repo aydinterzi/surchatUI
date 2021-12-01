@@ -15,6 +15,7 @@ import { NewSurveyComponent } from './new-survey/new-survey.component';
 import { ExistSurveysComponent } from './exist-surveys/exist-surveys.component';
 import { JoinsurveyComponent } from './joinsurvey/joinsurvey.component';
 import { SurveyComponent } from './survey/survey.component';
+import { AnswersurveyComponent } from './answersurvey/answersurvey.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { SurveyComponent } from './survey/survey.component';
     ExistSurveysComponent,
     JoinsurveyComponent,
     SurveyComponent,
+    AnswersurveyComponent,
   ],
   imports: [
     BrowserModule,

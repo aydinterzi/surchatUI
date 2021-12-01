@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Surveys } from '../Models/DTO/Surveys';
+import { Surveys } from '../Models/Surveys';
 import { AuthService } from '../_services/auth.service';
 import { SurveyService } from '../_services/survey.service';
 

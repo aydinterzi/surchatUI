@@ -1,3 +1,5 @@
+import { Questions } from "./Questions";
+
 export class Surveys{
   id:number;
   code:number;
@@ -5,4 +7,5 @@ export class Surveys{
   title:string;
   time:number;
   isOpen:boolean;
+  questions:Questions[];
 }

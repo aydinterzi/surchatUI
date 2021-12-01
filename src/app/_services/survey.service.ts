@@ -1,10 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { QuestionForCreateDTO } from '../Models/DTO/QuestionForCreateDTO';
 import { SurveyForCreateDTO } from '../Models/DTO/SurveyForCreateDTO';
-import { Surveys } from '../Models/DTO/Surveys';
+import { SurveyForGetQuestions } from '../Models/DTO/SurveyForGetQuestions';
+import { Surveys } from '../Models/Surveys';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -23,7 +25,12 @@ export class SurveyService {
     return this.http.post(this.baseUrl+"createsurvey",survey);
   }
 
-  getSurveys():Observable<Surveys[]>{
+  getSurveys(userParams?):Observable<Surveys[]>{
+    let params=new HttpParams();
+    if(userParams!=null)
+    {
+      params=params.append('code',userParams.code);
+    }
     return this.http.get<Surveys[]>(this.baseUrl);
   }
 
@@ -31,4 +38,10 @@ export class SurveyService {
     question.code=code;
     return this.http.post(this.baseUrl+"createquestion",question);
   }
+
+  joinSurvey(code:number):Observable<Surveys>{
+    console.log(code);
+    return this.http.get<Surveys>(this.baseUrl+"getsurvey/"+code);
+  }
+
 }
