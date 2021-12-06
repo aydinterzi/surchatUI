@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { HostListener, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http'
 
@@ -16,6 +16,7 @@ import { ExistSurveysComponent } from './exist-surveys/exist-surveys.component';
 import { JoinsurveyComponent } from './joinsurvey/joinsurvey.component';
 import { SurveyComponent } from './survey/survey.component';
 import { AnswersurveyComponent } from './answersurvey/answersurvey.component';
+import { CustomDirectiveDirective } from 'src/libs/custom-directives/custom-directive.directive';
 
 
 @NgModule({
@@ -30,13 +31,14 @@ import { AnswersurveyComponent } from './answersurvey/answersurvey.component';
     JoinsurveyComponent,
     SurveyComponent,
     AnswersurveyComponent,
+    CustomDirectiveDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

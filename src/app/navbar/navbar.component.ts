@@ -4,7 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { JoinsurveyComponent } from '../joinsurvey/joinsurvey.component';
 import { NewSurveyComponent } from '../new-survey/new-survey.component';
 import { AuthService } from '../_services/auth.service';
-
+import { CustomDirectiveDirective } from 'src/libs/custom-directives/custom-directive.directive';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

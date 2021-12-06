@@ -16,6 +16,10 @@ export class AppComponent implements OnInit {
     if(token){
       this.authService.decodedToken=this.helper.decodeToken(token);
     }
+    if(this.helper.isTokenExpired(token))
+    {
+      localStorage.removeItem("token");
+    }
   }
   loggedIn(){
     return this.authService.loggedIn();

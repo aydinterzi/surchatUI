@@ -16,6 +16,7 @@ export class SurveyService {
   constructor(private http:HttpClient,private router:Router,private service:AuthService) { }
   baseUrl:string="https://localhost:44321/api/survey/";
   code:number;
+  userId=this.service.decodedToken.nameid;
   createSurvey(survey:SurveyForCreateDTO,id:number)
   {
     survey.userId=id;
@@ -25,13 +26,9 @@ export class SurveyService {
     return this.http.post(this.baseUrl+"createsurvey",survey);
   }
 
-  getSurveys(userParams?):Observable<Surveys[]>{
+  getSurveys():Observable<Surveys[]>{
     let params=new HttpParams();
-    if(userParams!=null)
-    {
-      params=params.append('code',userParams.code);
-    }
-    return this.http.get<Surveys[]>(this.baseUrl);
+    return this.http.get<Surveys[]>(this.baseUrl+this.userId);
   }
 
   createQuestion(question:QuestionForCreateDTO,code:number){
@@ -40,7 +37,6 @@ export class SurveyService {
   }
 
   joinSurvey(code:number):Observable<Surveys>{
-    console.log(code);
     return this.http.get<Surveys>(this.baseUrl+"getsurvey/"+code);
   }
 
