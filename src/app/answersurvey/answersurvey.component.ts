@@ -23,4 +23,14 @@ export class AnswersurveyComponent implements OnInit {
       this.survey=next;
     })
   }
+  submit(){
+    let radio=document.getElementsByTagName("input");
+    for(let i=0;i<radio.length;i++){
+      if(radio[i].checked)
+        {
+          console.log(radio[i].id.substring(6,8));
+
+        }
+    }
+  }
 }
