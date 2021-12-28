@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Surveys } from '../Models/Surveys';
+import { UserAnswers } from '../Models/UserAnswers';
+import { AuthService } from '../_services/auth.service';
 import { SurveyService } from '../_services/survey.service';
 
 @Component({
@@ -10,9 +12,10 @@ import { SurveyService } from '../_services/survey.service';
 })
 export class AnswersurveyComponent implements OnInit {
 
-  constructor(private activeRouter:ActivatedRoute,private surveyService:SurveyService) { }
+  constructor(private activeRouter:ActivatedRoute,private surveyService:SurveyService,private authService:AuthService) { }
   code:number;
   survey:Surveys;
+  userAnswers:UserAnswers=new UserAnswers;
   ngOnInit(): void {
     this.code=+this.activeRouter.snapshot.paramMap.get('code');
     this.getSurvey();
@@ -24,13 +27,21 @@ export class AnswersurveyComponent implements OnInit {
     })
   }
   submit(){
+    this.userAnswers.answersid=[];
+    this.userAnswers.questionsid=[];
+    this.userAnswers.userid=this.authService.decodedToken.nameid;
     let radio=document.getElementsByTagName("input");
     for(let i=0;i<radio.length;i++){
       if(radio[i].checked)
         {
-          console.log(radio[i].id.substring(6,8));
-
+          console.log(radio[i].id);
+          console.log(radio[i].parentElement.parentElement.id);
+          this.userAnswers.answersid.push(radio[i].id);
+          this.userAnswers.questionsid.push(+radio[i].parentElement.parentElement.id);
         }
     }
+    this.surveyService.answerSurvey(this.userAnswers).subscribe(next=>{
+      console.log(next);
+    });
   }
 }

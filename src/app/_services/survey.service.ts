@@ -7,6 +7,7 @@ import { QuestionForCreateDTO } from '../Models/DTO/QuestionForCreateDTO';
 import { SurveyForCreateDTO } from '../Models/DTO/SurveyForCreateDTO';
 import { SurveyForGetQuestions } from '../Models/DTO/SurveyForGetQuestions';
 import { Surveys } from '../Models/Surveys';
+import { UserAnswers } from '../Models/UserAnswers';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -38,6 +39,10 @@ export class SurveyService {
 
   joinSurvey(code:number):Observable<Surveys>{
     return this.http.get<Surveys>(this.baseUrl+"getsurvey/"+code);
+  }
+
+  answerSurvey(userAnswers:UserAnswers){
+    return this.http.post(this.baseUrl+"answersurvey",userAnswers);
   }
 
 }

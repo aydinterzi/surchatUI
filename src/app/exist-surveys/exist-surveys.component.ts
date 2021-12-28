@@ -13,7 +13,6 @@ export class ExistSurveysComponent implements OnInit {
   constructor(private survey:SurveyService,private authService:AuthService) { }
   surveys:Surveys[];
   ngOnInit(): void {
-
   this.getSurveys();
   }
   getSurveys(){
