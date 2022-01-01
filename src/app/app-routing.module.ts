@@ -5,14 +5,15 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { SurveyComponent } from './survey/survey.component';
+import { AuthGuard } from './_guards/auth_guard';
 
 const routes: Routes = [
   {path:"",redirectTo:"/home",pathMatch:"full"},
-  {path:"home",component:HomeComponent},
+  {path:"home",component:HomeComponent,canActivate:[AuthGuard]},
   {path:"login",component:LoginComponent},
   {path:"signup",component:SignupComponent},
-  {path:"surveys/:code",component:SurveyComponent},
-  {path:"answer/:code",component:AnswersurveyComponent}
+  {path:"surveys/:code",component:SurveyComponent,canActivate:[AuthGuard]},
+  {path:"answer/:code",component:AnswersurveyComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({

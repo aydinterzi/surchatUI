@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { AlertifyService } from '../_services/alertify.service';
 import { SurveyService } from '../_services/survey.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { SurveyService } from '../_services/survey.service';
   styleUrls: []
 })
 export class SurveyComponent implements OnInit {
-  constructor(private surveyService:SurveyService,private route:ActivatedRoute) { }
+  constructor(private surveyService:SurveyService,private route:ActivatedRoute,private alertify:AlertifyService) { }
   code:number;
   ngOnInit(): void {
     this.code=+this.route.snapshot.paramMap.get('code');
@@ -23,8 +24,12 @@ export class SurveyComponent implements OnInit {
   });
   createQuestion(){
     console.log(this.questionForm.value);
-    this.surveyService.createQuestion(this.questionForm.value,this.code).subscribe(next=>
-      console.log(next));
+    this.surveyService.createQuestion(this.questionForm.value,this.code).subscribe(next=>{
+      this.alertify.success("Soru eklendi!!");
+      console.log(next);
+    })
+
+
   }
 
   get question(){return this.questionForm.get('question')};

@@ -17,7 +17,11 @@ import { JoinsurveyComponent } from './joinsurvey/joinsurvey.component';
 import { SurveyComponent } from './survey/survey.component';
 import { AnswersurveyComponent } from './answersurvey/answersurvey.component';
 import { CustomDirectiveDirective } from 'src/libs/custom-directives/custom-directive.directive';
+import { JwtModule } from '@auth0/angular-jwt';
 
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
   declarations: [
@@ -39,6 +43,13 @@ import { CustomDirectiveDirective } from 'src/libs/custom-directives/custom-dire
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:44321"],
+        disallowedRoutes: ["localhost:44321/api/user"],
+      },
+    }),
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
