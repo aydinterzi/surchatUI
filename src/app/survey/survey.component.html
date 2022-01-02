@@ -20,14 +20,13 @@
 
 
 <div class="col-9">
-  <div class="border border-2 w-75 h-25">
-    <p class="fs-3 fw-bold">Question</p>
-    <p class="fs-5 ms-2">{{question.value}}</p>
+  <div *ngFor="let item of questionsPreview;index as i" class="border border-2 w-75 h-25">
+    <p class="fs-5 ms-2">{{item.question}}</p>
     <ul style="list-style: none;">
-      <li> <input class="form-check-input" type="radio" value="" id="flexCheckDefault">{{option1.value}}</li>
-      <li> <input class="form-check-input" type="radio" value="" id="flexCheckDefault">{{option2.value}}</li>
-      <li> <input class="form-check-input" type="radio" value="" id="flexCheckDefault">{{option3.value}}</li>
-      <li> <input class="form-check-input" type="radio" value="" id="flexCheckDefault">{{option4.value}}</li>
+      <li> <input class="form-check-input" type="radio" [name]="i" id="flexCheckDefault">{{item.option1}}</li>
+      <li> <input class="form-check-input" type="radio" [name]="i" id="flexCheckDefault">{{item.option2}}</li>
+      <li> <input class="form-check-input" type="radio" [name]="i" id="flexCheckDefault">{{item.option3}}</li>
+      <li> <input class="form-check-input" type="radio" [name]="i" id="flexCheckDefault">{{item.option4}}</li>
     </ul>
   </div>
 </div>

@@ -6,7 +6,7 @@
       <div class="card-body" [id]="soru.id">
         <h5 class="card-title">{{i+1}}. {{soru?.question}}</h5>
         <div class="form-check" *ngFor="let option of soru?.options ; index as j">
-          <input class="form-check-input" type="radio" [id]="option.option">
+          <input class="form-check-input" type="radio" [id]="option.option" [name]="soru.question">
           <label class="form-check-label" for="flexRadioDefault1">
             {{option.option}}
           </label>

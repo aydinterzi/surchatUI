@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormControlName, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { QuestionForCreateDTO } from '../Models/DTO/QuestionForCreateDTO';
 import { AlertifyService } from '../_services/alertify.service';
 import { SurveyService } from '../_services/survey.service';
 
@@ -12,6 +13,7 @@ import { SurveyService } from '../_services/survey.service';
 export class SurveyComponent implements OnInit {
   constructor(private surveyService:SurveyService,private route:ActivatedRoute,private alertify:AlertifyService) { }
   code:number;
+  questionsPreview:QuestionForCreateDTO[]=[];
   ngOnInit(): void {
     this.code=+this.route.snapshot.paramMap.get('code');
   }
@@ -24,6 +26,7 @@ export class SurveyComponent implements OnInit {
   });
   createQuestion(){
     console.log(this.questionForm.value);
+     this.questionsPreview.push(this.questionForm.value);
     this.surveyService.createQuestion(this.questionForm.value,this.code).subscribe(next=>{
       this.alertify.success("Soru eklendi!!");
       console.log(next);
