@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Surveys } from '../Models/Surveys';
 import { UserAnswers } from '../Models/UserAnswers';
 import { AuthService } from '../_services/auth.service';
@@ -12,7 +12,7 @@ import { SurveyService } from '../_services/survey.service';
 })
 export class AnswersurveyComponent implements OnInit {
 
-  constructor(private activeRouter:ActivatedRoute,private surveyService:SurveyService,private authService:AuthService) { }
+  constructor(private activeRouter:ActivatedRoute,private surveyService:SurveyService,private authService:AuthService,private router:Router) { }
   code:number;
   survey:Surveys;
   userAnswers:UserAnswers=new UserAnswers;
@@ -43,5 +43,6 @@ export class AnswersurveyComponent implements OnInit {
     this.surveyService.answerSurvey(this.userAnswers).subscribe(next=>{
       console.log(next);
     });
+    this.router.navigate(["/result",this.code]);
   }
 }

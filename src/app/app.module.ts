@@ -18,6 +18,7 @@ import { SurveyComponent } from './survey/survey.component';
 import { AnswersurveyComponent } from './answersurvey/answersurvey.component';
 import { CustomDirectiveDirective } from 'src/libs/custom-directives/custom-directive.directive';
 import { JwtModule } from '@auth0/angular-jwt';
+import { ResultsComponent } from './results/results.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -35,7 +36,8 @@ export function tokenGetter() {
     JoinsurveyComponent,
     SurveyComponent,
     AnswersurveyComponent,
-    CustomDirectiveDirective
+    CustomDirectiveDirective,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,

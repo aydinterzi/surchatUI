@@ -14,6 +14,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class SurveyService {
+
   constructor(private http:HttpClient,private router:Router,private service:AuthService) { }
   baseUrl:string="https://localhost:44321/api/survey/";
   code:number;
@@ -45,4 +46,7 @@ export class SurveyService {
     return this.http.post(this.baseUrl+"answersurvey",userAnswers);
   }
 
+  getResult(code: number):Observable<Surveys> {
+    return this.http.get<Surveys>(this.baseUrl+"result/"+code);
+  }
 }
