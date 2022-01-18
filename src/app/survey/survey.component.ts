@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormControlName, FormGroup } from '@angular/forms';
+import { FormControl, FormControlName, FormGroup,FormBuilder, FormArray } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionForCreateDTO } from '../Models/DTO/QuestionForCreateDTO';
 import { AlertifyService } from '../_services/alertify.service';
@@ -11,19 +11,48 @@ import { SurveyService } from '../_services/survey.service';
   styleUrls: []
 })
 export class SurveyComponent implements OnInit {
-  constructor(private surveyService:SurveyService,private route:ActivatedRoute,private alertify:AlertifyService) { }
+  constructor(private fb:FormBuilder,private surveyService:SurveyService,private route:ActivatedRoute,private alertify:AlertifyService) {
+    this.createSurveyForm();
+   }
   code:number;
   questionsPreview:QuestionForCreateDTO[]=[];
+  questionForm:FormGroup;
   ngOnInit(): void {
     this.code=+this.route.snapshot.paramMap.get('code');
   }
-  questionForm=new FormGroup({
-    question:new FormControl(""),
-    option1:new FormControl(""),
-    option2:new FormControl(""),
-    option3:new FormControl(""),
-    option4:new FormControl("")
-  });
+  createSurveyForm(){
+    this.questionForm=this.fb.group({
+      question:'',
+      options:this.fb.array([]),
+    });
+  }
+
+  get options():FormArray{
+    return this.questionForm.get("options") as FormArray;
+  }
+
+  newOption():FormGroup{
+    return this.fb.group({
+      option:''
+    })
+  }
+
+  addOptions(){
+    this.options.push(this.newOption());
+  }
+
+  removeOption(i:number){
+    this.options.removeAt(i);
+  }
+
+
+  // questionForm=new FormGroup({
+  //   question:new FormControl(""),
+  //   option1:new FormControl(""),
+  //   option2:new FormControl(""),
+  //   option3:new FormControl(""),
+  //   option4:new FormControl("")
+  // });
   createQuestion(){
     console.log(this.questionForm.value);
      this.questionsPreview.push(this.questionForm.value);
@@ -36,9 +65,5 @@ export class SurveyComponent implements OnInit {
   }
 
   get question(){return this.questionForm.get('question')};
-  get option1(){return this.questionForm.get('option1')};
-  get option2(){return this.questionForm.get('option2')};
-  get option3(){return this.questionForm.get('option3')};
-  get option4(){return this.questionForm.get('option4')};
 
 }

@@ -27,7 +27,7 @@ export class ResultsComponent implements OnInit {
 
   //cevap oranları bulunacak.
   getRatio(){
-    
+
   }
 
 }

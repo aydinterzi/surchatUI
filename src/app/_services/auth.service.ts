@@ -10,7 +10,7 @@ import { UserForRegisterDTO } from '../Models/DTO/UserForRegisterDTO';
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl:string="https://localhost:44321/api/user/";
+  baseUrl:string="https://surchatapi.azurewebsites.net/api/user/";
   helper = new JwtHelperService();
   decodedToken:any;
   constructor(private http:HttpClient,private router:Router) { }
