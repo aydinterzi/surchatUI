@@ -16,7 +16,7 @@ import { AuthService } from './auth.service';
 export class SurveyService {
 
   constructor(private http:HttpClient,private router:Router,private service:AuthService) { }
-  baseUrl:string="https://localhost:44321/api/survey/";
+  baseUrl:string="https://surchatapi20220126192227.azurewebsites.net/api/survey/";
   code:number;
   userId=this.service.decodedToken.nameid;
   createSurvey(survey:SurveyForCreateDTO,id:number)
