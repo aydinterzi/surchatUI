@@ -26,7 +26,9 @@
       </div>
       <button class="btn btn-primary" (click)="createQuestion()">
         Submit Question
+
       </button>
+      <p> <button class="btn btn-success mt-3" routerLink="/home">Submit Survey</button></p>
     </form>
   </div>
 
@@ -35,7 +37,7 @@
       <p class="fs-5 ms-2">{{ item.question }}</p>
       <ul style="list-style: none">
         <li *ngFor="let soru of item.options">
-          <input class="form-check-input" type="radio" [name]="i" id="flexCheckDefault" />{{ soru  }}
+          <input class="form-check-input" type="radio" [name]="i" id="flexCheckDefault" />{{ soru }}
         </li>
       </ul>
     </div>
