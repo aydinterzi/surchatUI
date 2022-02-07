@@ -27,16 +27,14 @@ export class AnswersurveyComponent implements OnInit {
     })
   }
   submit(){
-    this.userAnswers.answersid=[];
+    this.userAnswers.answers=[];
     this.userAnswers.questionsid=[];
     this.userAnswers.userid=this.authService.decodedToken.nameid;
     let radio=document.getElementsByTagName("input");
     for(let i=0;i<radio.length;i++){
       if(radio[i].checked)
         {
-          console.log(radio[i].id);
-          console.log(radio[i].parentElement.parentElement.id);
-          this.userAnswers.answersid.push(radio[i].id);
+          this.userAnswers.answers.push(radio[i].id);
           this.userAnswers.questionsid.push(+radio[i].parentElement.parentElement.id);
         }
     }

@@ -1,5 +1,5 @@
   export class AnswersDTO{
-   questions:number[];
-  answers:number[];
+   questions:number;
+  answers:string;
   userId:number;
   }

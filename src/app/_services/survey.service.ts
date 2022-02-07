@@ -16,7 +16,7 @@ import { AuthService } from './auth.service';
 export class SurveyService {
 
   constructor(private http:HttpClient,private router:Router,private service:AuthService) { }
-  baseUrl:string="https://surchatapi20220126192227.azurewebsites.net/api/survey/";
+  baseUrl:string="https://localhost:44321/api/survey/";
   code:number;
   userId=this.service.decodedToken.nameid;
   createSurvey(survey:SurveyForCreateDTO,id:number)
@@ -24,7 +24,6 @@ export class SurveyService {
     survey.userId=id;
     survey.code=Math.floor(Math.random() * (999999 - 100000 + 1) + 100000);
     this.code=survey.code;
-    console.log("deneme");
     return this.http.post(this.baseUrl+"createsurvey",survey);
   }
 
