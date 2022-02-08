@@ -19,6 +19,8 @@ import { AnswersurveyComponent } from './answersurvey/answersurvey.component';
 import { CustomDirectiveDirective } from 'src/libs/custom-directives/custom-directive.directive';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ResultsComponent } from './results/results.component';
+import { NgChartsModule } from 'ng2-charts';
+import { ChartModule } from 'angular2-chartjs';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -45,6 +47,8 @@ export function tokenGetter() {
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
+    NgChartsModule,
+    ChartModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

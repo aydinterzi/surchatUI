@@ -12,8 +12,11 @@ export class ResultsComponent implements OnInit {
   survey:Surveys;
   code:number;
   arr:any[];
-  constructor(private route:ActivatedRoute,private service:SurveyService) { }
-
+  type;
+  data:any[]=[];
+  options;
+  deneme=[4,2,1,5]
+  constructor(private route:ActivatedRoute,private service:SurveyService) {}
   ngOnInit(): void {
     this.code=+this.route.snapshot.paramMap.get('code');
     this.getResult();
@@ -32,11 +35,31 @@ export class ResultsComponent implements OnInit {
     for (let i = 0; i < this.survey.questions.length; i++) {
       let counts = {};
     this.survey.questions[i].userAnswers.forEach(function (x) { counts[x.answers] = (counts[x.answers] || 0) + 1; });
-    console.log(counts)
+    console.log(counts);
+    let keys=Object.keys(counts);
+    let values=Object.values(counts);
+    this.chart(keys,values);
     }
   }
 
-  toArray(){
-    this.arr=this.survey.questions[0].userAnswers.map(x=>x.answers)
+  chart(keys,values){
+  this.type = 'pie';
+  this.data.push({
+      labels:keys,
+      datasets: [
+        {
+          data: values,
+          backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+          ],
+        }
+      ]
+    });
+    this.options = {
+      responsive: true,
+      maintainAspectRatio: false,
+    };
   }
 }
