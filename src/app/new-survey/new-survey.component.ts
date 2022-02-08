@@ -9,27 +9,37 @@ import { SurveyService } from '../_services/survey.service';
 @Component({
   selector: 'app-new-survey',
   templateUrl: './new-survey.component.html',
-  styleUrls: ['./new-survey.component.css']
+  styleUrls: ['./new-survey.component.css'],
 })
 export class NewSurveyComponent implements OnInit {
-  @Input() userId:number;
-  constructor(private activeModal:NgbActiveModal,private http:HttpClient,private surveyService:SurveyService,private authService:AuthService,private router:Router) { }
+  @Input() userId: number;
+  constructor(
+    private activeModal: NgbActiveModal,
+    private http: HttpClient,
+    private surveyService: SurveyService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {
-  }
-  surveyForm=new FormGroup({
-    Title:new FormControl(""),
-    Time:new FormControl("")
+  ngOnInit(): void {}
+  surveyForm = new FormGroup({
+    Title: new FormControl(''),
+    Time: new FormControl(''),
   });
-  closeModal(){
+  closeModal() {
     this.activeModal.close();
   }
 
-  createSurvey(){
-    this.surveyService.createSurvey(this.surveyForm.value,this.authService.decodedToken?.nameid).subscribe(next=>{
-      console.log("next");
-      this.router.navigate(["/surveys",this.surveyService.code]);
-      this.activeModal.close();
-    });
+  createSurvey() {
+    this.surveyService
+      .createSurvey(
+        this.surveyForm.value,
+        this.authService.decodedToken?.nameid
+      )
+      .subscribe((next) => {
+        console.log('next');
+        this.router.navigate(['/surveys', this.surveyService.code]);
+        this.activeModal.close();
+      });
   }
 }

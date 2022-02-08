@@ -1,13 +1,14 @@
 <div class="container-fluid">
-<div  class="row g-4">
-  <div *ngFor="let survey of surveys" class="col-sm-2">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{survey.title}}</h5>
-        <p class="card-text">{{survey.code}}-{{survey.time}}</p>
-        <a class="btn btn-primary">ankete git</a>
+  <div class="row g-4">
+    <div *ngFor="let survey of surveys" class="col-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ survey.title }}</h5>
+          <p class="card-text">{{ survey.code }}-{{ survey.time }}</p>
+          <a class="btn btn-primary">ankete git</a>
+        </div>
+        <div class="card-footer">{{ survey.isOpen }}</div>
       </div>
-      <div class="card-footer">{{survey.isOpen}}</div>
     </div>
   </div>
 </div>

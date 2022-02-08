@@ -1,4 +1,4 @@
-export class Options{
-  id:number;
-  option:string;
+export class Options {
+  id: number;
+  option: string;
 }

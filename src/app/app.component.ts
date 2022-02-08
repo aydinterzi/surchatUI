@@ -5,24 +5,22 @@ import { AuthService } from './_services/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   title = 'surchatUI';
   helper = new JwtHelperService();
-  constructor(private authService:AuthService){}
-  ngOnInit(){
-    const token=localStorage.getItem("token");
-    if(token){
-      this.authService.decodedToken=this.helper.decodeToken(token);
+  constructor(private authService: AuthService) {}
+  ngOnInit() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.authService.decodedToken = this.helper.decodeToken(token);
     }
-    if(this.helper.isTokenExpired(token))
-    {
-      localStorage.removeItem("token");
+    if (this.helper.isTokenExpired(token)) {
+      localStorage.removeItem('token');
     }
   }
-  loggedIn(){
+  loggedIn() {
     return this.authService.loggedIn();
   }
-
 }

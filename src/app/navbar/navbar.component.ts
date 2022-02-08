@@ -8,24 +8,26 @@ import { CustomDirectiveDirective } from 'src/libs/custom-directives/custom-dire
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-
-  constructor(private router:Router,private modalService:NgbModal,private authService:AuthService) { }
-  userId:number=this.authService.decodedToken?.nameid;
-  ngOnInit(): void {
+  constructor(
+    private router: Router,
+    private modalService: NgbModal,
+    private authService: AuthService
+  ) {}
+  userId: number = this.authService.decodedToken?.nameid;
+  ngOnInit(): void {}
+  logOut() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
-  logOut(){
-    localStorage.removeItem("token");
-    this.router.navigate(["/login"]);
+  newSurvey() {
+    const modalRef = this.modalService.open(NewSurveyComponent);
+    modalRef.componentInstance.userId = this.userId;
   }
-  newSurvey(){
-    const modalRef=this.modalService.open(NewSurveyComponent);
-    modalRef.componentInstance.userId=this.userId;
-  }
-  joinSurvey(){
-    const modalRef=this.modalService.open(JoinsurveyComponent);
-    modalRef.componentInstance.userId=this.userId;
+  joinSurvey() {
+    const modalRef = this.modalService.open(JoinsurveyComponent);
+    modalRef.componentInstance.userId = this.userId;
   }
 }

@@ -1,5 +1,5 @@
-  export class AnswersDTO{
-   questions:number;
-  answers:string;
-  userId:number;
-  }
+export class AnswersDTO {
+  questions: number;
+  answers: string;
+  userId: number;
+}

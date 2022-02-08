@@ -11,41 +11,43 @@ import { UserAnswers } from '../Models/UserAnswers';
 import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SurveyService {
-
-  constructor(private http:HttpClient,private router:Router,private service:AuthService) { }
-  baseUrl:string="https://localhost:44321/api/survey/";
-  code:number;
-  userId=this.service.decodedToken.nameid;
-  createSurvey(survey:SurveyForCreateDTO,id:number)
-  {
-    survey.userId=id;
-    survey.code=Math.floor(Math.random() * (999999 - 100000 + 1) + 100000);
-    this.code=survey.code;
-    return this.http.post(this.baseUrl+"createsurvey",survey);
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private service: AuthService
+  ) {}
+  baseUrl: string = 'https://localhost:44321/api/survey/';
+  code: number;
+  userId = this.service.decodedToken.nameid;
+  createSurvey(survey: SurveyForCreateDTO, id: number) {
+    survey.userId = id;
+    survey.code = Math.floor(Math.random() * (999999 - 100000 + 1) + 100000);
+    this.code = survey.code;
+    return this.http.post(this.baseUrl + 'createsurvey', survey);
   }
 
-  getSurveys():Observable<Surveys[]>{
-    let params=new HttpParams();
-    return this.http.get<Surveys[]>(this.baseUrl+this.userId);
+  getSurveys(): Observable<Surveys[]> {
+    let params = new HttpParams();
+    return this.http.get<Surveys[]>(this.baseUrl + this.userId);
   }
 
-  createQuestion(question:QuestionForCreateDTO,code:number){
-    question.code=code;
-    return this.http.post(this.baseUrl+"createquestion",question);
+  createQuestion(question: QuestionForCreateDTO, code: number) {
+    question.code = code;
+    return this.http.post(this.baseUrl + 'createquestion', question);
   }
 
-  joinSurvey(code:number):Observable<Surveys>{
-    return this.http.get<Surveys>(this.baseUrl+"getsurvey/"+code);
+  joinSurvey(code: number): Observable<Surveys> {
+    return this.http.get<Surveys>(this.baseUrl + 'getsurvey/' + code);
   }
 
-  answerSurvey(userAnswers:UserAnswers){
-    return this.http.post(this.baseUrl+"answersurvey",userAnswers);
+  answerSurvey(userAnswers: UserAnswers) {
+    return this.http.post(this.baseUrl + 'answersurvey', userAnswers);
   }
 
-  getResult(code: number):Observable<Surveys> {
-    return this.http.get<Surveys>(this.baseUrl+"result/"+code);
+  getResult(code: number): Observable<Surveys> {
+    return this.http.get<Surveys>(this.baseUrl + 'result/' + code);
   }
 }

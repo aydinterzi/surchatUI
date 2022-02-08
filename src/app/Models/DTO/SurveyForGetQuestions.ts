@@ -1,3 +1,3 @@
-export class SurveyForGetQuestions{
-  code:number;
+export class SurveyForGetQuestions {
+  code: number;
 }

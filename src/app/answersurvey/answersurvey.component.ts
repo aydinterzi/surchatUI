@@ -8,39 +8,43 @@ import { SurveyService } from '../_services/survey.service';
 @Component({
   selector: 'app-answersurvey',
   templateUrl: './answersurvey.component.html',
-  styleUrls: []
+  styleUrls: [],
 })
 export class AnswersurveyComponent implements OnInit {
-
-  constructor(private activeRouter:ActivatedRoute,private surveyService:SurveyService,private authService:AuthService,private router:Router) { }
-  code:number;
-  survey:Surveys;
-  userAnswers:UserAnswers=new UserAnswers;
+  constructor(
+    private activeRouter: ActivatedRoute,
+    private surveyService: SurveyService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
+  code: number;
+  survey: Surveys;
+  userAnswers: UserAnswers = new UserAnswers();
   ngOnInit(): void {
-    this.code=+this.activeRouter.snapshot.paramMap.get('code');
+    this.code = +this.activeRouter.snapshot.paramMap.get('code');
     this.getSurvey();
   }
-  getSurvey()
-  {
-    this.surveyService.joinSurvey(this.code).subscribe(next=>{
-      this.survey=next;
-    })
+  getSurvey() {
+    this.surveyService.joinSurvey(this.code).subscribe((next) => {
+      this.survey = next;
+    });
   }
-  submit(){
-    this.userAnswers.answers=[];
-    this.userAnswers.questionsid=[];
-    this.userAnswers.userid=this.authService.decodedToken.nameid;
-    let radio=document.getElementsByTagName("input");
-    for(let i=0;i<radio.length;i++){
-      if(radio[i].checked)
-        {
-          this.userAnswers.answers.push(radio[i].id);
-          this.userAnswers.questionsid.push(+radio[i].parentElement.parentElement.id);
-        }
+  submit() {
+    this.userAnswers.answers = [];
+    this.userAnswers.questionsid = [];
+    this.userAnswers.userid = this.authService.decodedToken.nameid;
+    let radio = document.getElementsByTagName('input');
+    for (let i = 0; i < radio.length; i++) {
+      if (radio[i].checked) {
+        this.userAnswers.answers.push(radio[i].id);
+        this.userAnswers.questionsid.push(
+          +radio[i].parentElement.parentElement.id
+        );
+      }
     }
-    this.surveyService.answerSurvey(this.userAnswers).subscribe(next=>{
+    this.surveyService.answerSurvey(this.userAnswers).subscribe((next) => {
       console.log(next);
     });
-    this.router.navigate(["/result",this.code]);
+    this.router.navigate(['/result', this.code]);
   }
 }

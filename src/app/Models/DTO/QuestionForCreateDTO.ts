@@ -1,5 +1,5 @@
-export class QuestionForCreateDTO{
-  code:number;
-  question:string;
-  options:string[];
+export class QuestionForCreateDTO {
+  code: number;
+  question: string;
+  options: string[];
 }

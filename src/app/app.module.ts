@@ -1,6 +1,6 @@
 import { HostListener, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +23,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { ChartModule } from 'angular2-chartjs';
 
 export function tokenGetter() {
-  return localStorage.getItem("token");
+  return localStorage.getItem('token');
 }
 
 @NgModule({
@@ -39,7 +39,7 @@ export function tokenGetter() {
     SurveyComponent,
     AnswersurveyComponent,
     CustomDirectiveDirective,
-    ResultsComponent
+    ResultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,12 +52,12 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:44321"],
-        disallowedRoutes: ["localhost:44321/api/user"],
+        allowedDomains: ['localhost:44321'],
+        disallowedRoutes: ['localhost:44321/api/user'],
       },
     }),
   ],
   providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
