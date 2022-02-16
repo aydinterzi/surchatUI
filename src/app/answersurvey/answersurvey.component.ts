@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Surveys } from '../Models/Surveys';
 import { UserAnswers } from '../Models/UserAnswers';
 import { AuthService } from '../_services/auth.service';
+import { SignalrService } from '../_services/signalr.service';
 import { SurveyService } from '../_services/survey.service';
 
 @Component({
@@ -15,12 +16,16 @@ export class AnswersurveyComponent implements OnInit {
     private activeRouter: ActivatedRoute,
     private surveyService: SurveyService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public signalRService: SignalrService
   ) {}
+  title = 'chat-ui';
+  text: string = "";
   code: number;
   survey: Surveys;
   userAnswers: UserAnswers = new UserAnswers();
   ngOnInit(): void {
+    this.signalRService.connect();
     this.code = +this.activeRouter.snapshot.paramMap.get('code');
     this.getSurvey();
   }
@@ -46,5 +51,16 @@ export class AnswersurveyComponent implements OnInit {
       console.log(next);
     });
     this.router.navigate(['/result', this.code]);
+  }
+  sendMessage(): void {
+    // this.signalRService.sendMessageToApi(this.text).subscribe({
+    //   next: _ => this.text = '',
+    //   error: (err) => console.error(err)
+    // });
+
+    this.signalRService.sendMessageToHub(this.text).subscribe({
+      next: _ => this.text = '',
+      error: (err) => console.error(err)
+    });
   }
 }
