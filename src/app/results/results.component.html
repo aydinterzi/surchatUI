@@ -1,7 +1,10 @@
-<chart
-  *ngFor="let item of data"
-  [type]="type"
-  [data]="item"
-  [options]="options"
-  legend="true"
-></chart>
+<div class="flexClass">
+  <chart
+    *ngFor="let item of data"
+    [type]="type"
+    [data]="item"
+    [options]="options"
+    legend="true"
+  ></chart>
+  <button class="btn btn-primary mt-3" routerLink="/home">Ana sayfaya dön</button>
+</div>

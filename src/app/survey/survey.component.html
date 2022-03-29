@@ -57,7 +57,7 @@
   <div class="col-9">
     <div
       *ngFor="let item of questionsPreview; index as i"
-      class="border border-2 w-75 h-25"
+      class="border border-2 w-75 h-25 mb-2"
     >
       <p class="fs-5 ms-2">{{ item.question }}</p>
       <ul style="list-style: none">
@@ -67,7 +67,7 @@
             type="radio"
             [name]="i"
             id="flexCheckDefault"
-          />{{ soru }}
+          />{{ soru['option'] }}
         </li>
       </ul>
     </div>

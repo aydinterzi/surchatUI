@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Surveys } from '../Models/Surveys';
+import { NewSurveyComponent } from '../new-survey/new-survey.component';
 import { AuthService } from '../_services/auth.service';
 import { SurveyService } from '../_services/survey.service';
 
@@ -11,9 +13,11 @@ import { SurveyService } from '../_services/survey.service';
 export class ExistSurveysComponent implements OnInit {
   constructor(
     private survey: SurveyService,
-    private authService: AuthService
+    private authService: AuthService,
+    private modalService: NgbModal,
   ) {}
   surveys: Surveys[];
+  userId: number = this.authService.decodedToken?.nameid;
   ngOnInit(): void {
     this.getSurveys();
   }
@@ -22,5 +26,10 @@ export class ExistSurveysComponent implements OnInit {
       console.log(next);
       this.surveys = next;
     });
+  }
+
+  newSurvey() {
+    const modalRef = this.modalService.open(NewSurveyComponent);
+    modalRef.componentInstance.userId = this.userId;
   }
 }
