@@ -19,7 +19,6 @@ export class AnswersurveyComponent implements OnInit {
     private router: Router,
     public signalRService: SignalrService
   ) {}
-  title = 'chat-ui';
   text: string = "";
   code: number;
   survey: Surveys;

@@ -1,4 +1,4 @@
-<div class="flexClass">
+<div *ngIf="keys.length!==0;else noData" class="flexClass">
   <chart
     *ngFor="let item of data"
     [type]="type"
@@ -6,5 +6,13 @@
     [options]="options"
     legend="true"
   ></chart>
-  <button class="btn btn-primary mt-3" routerLink="/home">Ana sayfaya dön</button>
+  <button class="btn btn-outline-primary mt-3" routerLink="/home">Ana sayfaya dön</button>
 </div>
+
+<ng-template #noData>
+  <div class="position-relative">
+    <div class="top-50 text-secondary text-center">
+      <p>There is no answered survey</p>
+    </div>
+  </div>
+</ng-template>

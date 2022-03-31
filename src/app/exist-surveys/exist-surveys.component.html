@@ -1,13 +1,15 @@
 <div class="container-fluid">
-  <div class="row g-4" *ngIf="surveys.length!=0 else noSurveyTemp">
-    <div *ngFor="let survey of surveys" class="col-sm-2">
-      <div class="card">
+  <div class="row g-4" *ngIf="surveys.length != 0; else noSurveyTemp">
+    <div *ngFor="let survey of surveys; even as isEven" class="col-sm-2">
+      <div class="card border-dark shadow-lg">
+        <div class="card-header fs-5 border-dark fw-bold">{{survey.title}}</div>
         <div class="card-body">
-          <h5 class="card-title">{{ survey.title }}</h5>
-          <p class="card-text">{{ survey.code }}-{{ survey.time }}</p>
-          <a class="btn btn-primary">ankete git</a>
+          <p class="card-text">Survey Code :<strong> {{ survey.code }}</strong> </p>
+          <p class="card-text">Survey Time :<strong> {{ survey.time }} minute</strong></p>
+          <a (click)="deleteSurvey(survey.code)" class="btn btn-outline-danger">Delete Survey</a>
+          <a [routerLink]="['/result',survey.code]" class="btn btn-outline-primary ms-3">Results</a>
         </div>
-        <div class="card-footer">{{ survey.isOpen }}</div>
+        <div class="card-footer border-dark">{{survey.isOpen?'Active':'Inactive'}}</div>
       </div>
     </div>
   </div>
@@ -22,7 +24,5 @@
         New Survey
       </button>
     </div>
-
   </div>
-
 </ng-template>

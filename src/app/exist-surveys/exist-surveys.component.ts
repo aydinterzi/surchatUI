@@ -32,4 +32,10 @@ export class ExistSurveysComponent implements OnInit {
     const modalRef = this.modalService.open(NewSurveyComponent);
     modalRef.componentInstance.userId = this.userId;
   }
+
+  deleteSurvey(surveyCode:number){
+    this.survey.deleteSurvey(surveyCode).subscribe(()=>{
+      this.getSurveys();
+    })
+  }
 }

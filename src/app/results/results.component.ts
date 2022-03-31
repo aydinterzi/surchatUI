@@ -15,7 +15,8 @@ export class ResultsComponent implements OnInit {
   type;
   data: any[] = [];
   options;
-  deneme = [4, 2, 1, 5];
+  keys:string[]=[];
+  values:string[]=[];
   constructor(private route: ActivatedRoute, private service: SurveyService) {}
   ngOnInit(): void {
     this.code = +this.route.snapshot.paramMap.get('code');
@@ -38,9 +39,9 @@ export class ResultsComponent implements OnInit {
         counts[x.answers] = (counts[x.answers] || 0) + 1;
       });
       console.log(counts);
-      let keys = Object.keys(counts);
-      let values = Object.values(counts);
-      this.chart(keys, values);
+       this.keys = Object.keys(counts);
+       this.values = Object.values(counts);
+      this.chart(this.keys, this.values);
     }
   }
 

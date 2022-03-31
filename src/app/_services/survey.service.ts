@@ -50,4 +50,8 @@ export class SurveyService {
   getResult(code: number): Observable<Surveys> {
     return this.http.get<Surveys>(this.baseUrl + 'result/' + code);
   }
+
+  deleteSurvey(code:number){
+    return this.http.delete(this.baseUrl + code);
+  }
 }
