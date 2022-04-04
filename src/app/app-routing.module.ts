@@ -21,7 +21,6 @@ const routes: Routes = [
   {
     path: 'answer/:code',
     component: AnswersurveyComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'result/:code',

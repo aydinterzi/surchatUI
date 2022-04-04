@@ -36,7 +36,7 @@ export class AnswersurveyComponent implements OnInit {
   submit() {
     this.userAnswers.answers = [];
     this.userAnswers.questionsid = [];
-    this.userAnswers.userid = this.authService.decodedToken.nameid;
+    this.userAnswers.userid=this.authService.decodedToken!=undefined?this.authService.decodedToken.nameid:999;
     let radio = document.getElementsByTagName('input');
     for (let i = 0; i < radio.length; i++) {
       if (radio[i].checked) {
@@ -46,6 +46,7 @@ export class AnswersurveyComponent implements OnInit {
         );
       }
     }
+    console.log(this.userAnswers);
     this.surveyService.answerSurvey(this.userAnswers).subscribe((next) => {
       console.log(next);
     });

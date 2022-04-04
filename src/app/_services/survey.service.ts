@@ -21,7 +21,7 @@ export class SurveyService {
   ) {}
   baseUrl: string = 'https://localhost:44321/api/survey/';
   code: number;
-  userId = this.service.decodedToken.nameid;
+  userId = this.service.decodedToken!=undefined?this.service.decodedToken.nameid:999;
   createSurvey(survey: SurveyForCreateDTO, id: number) {
     survey.userId = id;
     survey.code = Math.floor(Math.random() * (999999 - 100000 + 1) + 100000);

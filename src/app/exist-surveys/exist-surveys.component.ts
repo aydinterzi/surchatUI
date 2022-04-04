@@ -16,7 +16,7 @@ export class ExistSurveysComponent implements OnInit {
     private authService: AuthService,
     private modalService: NgbModal,
   ) {}
-  surveys: Surveys[];
+  surveys: Surveys[]=[];
   userId: number = this.authService.decodedToken?.nameid;
   ngOnInit(): void {
     this.getSurveys();
