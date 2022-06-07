@@ -21,6 +21,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { ResultsComponent } from './results/results.component';
 import { NgChartsModule } from 'ng2-charts';
 import { ChartModule } from 'angular2-chartjs';
+import { ClipboardModule } from 'ngx-clipboard';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -44,6 +45,7 @@ export function tokenGetter() {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ClipboardModule,
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,

@@ -1,15 +1,15 @@
 <div class="container-fluid">
   <div class="row g-4" *ngIf="surveys.length != 0; else noSurveyTemp">
-    <div *ngFor="let survey of surveys; even as isEven" class="col-sm-2">
+    <div *ngFor="let survey of surveys; even as isEven" class="col-md-4 col-xl-3">
       <div class="card border-dark shadow-lg">
         <div class="card-header fs-5 border-dark fw-bold">{{survey.title}}</div>
         <div class="card-body">
           <p class="card-text">Survey Code :<strong> {{ survey.code }}</strong> </p>
           <p class="card-text">Survey Time :<strong> {{ survey.time }} minute</strong></p>
-          <a (click)="deleteSurvey(survey.code)" class="btn btn-outline-danger">Delete Survey</a>
+          <button ngxClipboard [cbContent]="url+survey.code" class="btn btn-outline-success">Copy Link</button>
           <a [routerLink]="['/result',survey.code]" class="btn btn-outline-primary ms-3">Results</a>
         </div>
-        <div class="card-footer border-dark">{{survey.isOpen?'Active':'Inactive'}}</div>
+        <div class="card-footer"><a (click)="deleteSurvey(survey.code)" class="btn btn-outline-danger">Delete Survey</a></div>
       </div>
     </div>
   </div>
