@@ -37,7 +37,6 @@ export class NewSurveyComponent implements OnInit {
         this.authService.decodedToken?.nameid
       )
       .subscribe((next) => {
-        console.log('next');
         this.router.navigate(['/surveys', this.surveyService.code]);
         this.activeModal.close();
       });

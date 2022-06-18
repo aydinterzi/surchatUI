@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr'
@@ -10,13 +11,12 @@ import { MessagePackHubProtocol } from '@microsoft/signalr-protocol-msgpack'
   providedIn: 'root'
 })
 export class SignalrService {
-
   private hubConnection: HubConnection
   public messages: chatMessage[] = [];
   private connectionUrl = 'https://localhost:44321/signalr';
   private apiUrl = 'https://localhost:44321/api/chat';
-
-  constructor(private http: HttpClient) { }
+  private user = this.authService.decodedToken? this.authService.decodedToken.unique_name:"Anonim";
+  constructor(private http: HttpClient,private authService: AuthService) { }
 
   public connect = () => {
     this.startConnection();
@@ -46,6 +46,7 @@ export class SignalrService {
 
   private buildChatMessage(message: string): chatMessage {
     return {
+      UserName: this.user,
       ConnectionId: this.hubConnection.connectionId,
       Text: message,
       DateTime: new Date()
@@ -57,20 +58,18 @@ export class SignalrService {
 
     this.hubConnection.start()
       .then(() => console.log('connection started'))
-      .catch((err) => console.log('error while establishing signalr connection: ' + err))
+      .catch((err) => console.log('error while establishing signalr connection: ' + err));
   }
 
   private addListeners() {
     this.hubConnection.on("messageReceivedFromApi", (data: chatMessage) => {
-      console.log("message received from API Controller")
       this.messages.push(data);
     })
+
     this.hubConnection.on("messageReceivedFromHub", (data: chatMessage) => {
-      console.log("message received from Hub")
       this.messages.push(data);
     })
     this.hubConnection.on("newUserConnected", _ => {
-      console.log("new user connected")
     })
   }
 }

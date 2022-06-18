@@ -9,7 +9,7 @@ import { SurveyService } from '../_services/survey.service';
 @Component({
   selector: 'app-answersurvey',
   templateUrl: './answersurvey.component.html',
-  styleUrls: [],
+  styleUrls: ['./answersurvey.component.css'],
 })
 export class AnswersurveyComponent implements OnInit {
   constructor(
@@ -46,7 +46,6 @@ export class AnswersurveyComponent implements OnInit {
         );
       }
     }
-    console.log(this.userAnswers);
     this.surveyService.answerSurvey(this.userAnswers).subscribe((next) => {
       console.log(next);
     });

@@ -25,7 +25,6 @@ export class ResultsComponent implements OnInit {
 
   getResult() {
     this.service.getResult(this.code).subscribe((next) => {
-      console.log(next);
       this.survey = next;
       this.getRatio();
     });

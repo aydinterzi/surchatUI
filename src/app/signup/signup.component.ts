@@ -1,3 +1,4 @@
+import { AlertifyService } from './../_services/alertify.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,7 +10,7 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router,private alertify:AlertifyService) {}
 
   ngOnInit(): void {}
   userForm = new FormGroup({
@@ -29,11 +30,10 @@ export class SignupComponent implements OnInit {
   signUp() {
     this.authService.register(this.userForm.value).subscribe(
       () => {
-        console.log('kullanıcı oluşturuldu');
         this.router.navigate(['/login']);
       },
       (error) => {
-        console.log(error);
+        this.alertify.error('Kullanıcı adı veya şifre yanlış');
       }
     );
   }

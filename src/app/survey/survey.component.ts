@@ -64,13 +64,11 @@ export class SurveyComponent implements OnInit {
   //   option4:new FormControl("")
   // });
   createQuestion() {
-    console.log(this.questionForm.value);
     this.questionsPreview.push(this.questionForm.value);
     this.surveyService
       .createQuestion(this.questionForm.value, this.code)
       .subscribe((next) => {
         this.alertify.success('Soru eklendi!!');
-        console.log(next);
       });
   }
 

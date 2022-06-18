@@ -24,7 +24,6 @@ export class ExistSurveysComponent implements OnInit {
   }
   getSurveys() {
     this.survey.getSurveys().subscribe((next) => {
-      console.log(next);
       this.surveys = next;
     });
   }
