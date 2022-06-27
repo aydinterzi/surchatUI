@@ -27,6 +27,9 @@ export class AnswersurveyComponent implements OnInit {
     this.signalRService.connect();
     this.code = +this.activeRouter.snapshot.paramMap.get('code');
     this.getSurvey();
+    setTimeout(() => {
+      this.joinChat();
+    }, 1000);
   }
   getSurvey() {
     this.surveyService.joinSurvey(this.code).subscribe((next) => {
@@ -57,9 +60,14 @@ export class AnswersurveyComponent implements OnInit {
     //   error: (err) => console.error(err)
     // });
 
-    this.signalRService.sendMessageToHub(this.text).subscribe({
+    this.signalRService.sendMessageToHub(this.text, this.code.toString()).subscribe({
       next: _ => this.text = '',
       error: (err) => console.error(err)
     });
+  }
+  joinChat(){
+    this.signalRService.hubConnection.invoke("addGroup",this.signalRService.hubConnection.connectionId,this.code.toString())
+    .then(() => { console.log('group added successfully'); })
+    .catch((err) => console.log('error while adding group: ' + err));
   }
 }
