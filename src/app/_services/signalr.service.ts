@@ -11,7 +11,7 @@ import { MessagePackHubProtocol } from '@microsoft/signalr-protocol-msgpack'
   providedIn: 'root'
 })
 export class SignalrService {
-  private hubConnection: HubConnection
+  public hubConnection: HubConnection
   public messages: chatMessage[] = [];
   private connectionUrl = 'https://localhost:44321/signalr';
   private apiUrl = 'https://localhost:44321/api/chat';
@@ -28,8 +28,8 @@ export class SignalrService {
       .pipe(tap(_ => console.log("message sucessfully sent to api controller")));
   }
 
-  public sendMessageToHub(message: string) {
-    var promise = this.hubConnection.invoke("BroadcastAsync", this.buildChatMessage(message))
+  public sendMessageToHub(message: string, groupName:string) {
+    var promise = this.hubConnection.invoke("BroadcastAsync", this.buildChatMessage(message),groupName)
       .then(() => { console.log('message sent successfully to hub'); })
       .catch((err) => console.log('error while sending a message to hub: ' + err));
 

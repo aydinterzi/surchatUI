@@ -14,7 +14,6 @@ export class AuthService {
   helper = new JwtHelperService();
   decodedToken: any;
   constructor(private http: HttpClient, private router: Router) {}
-
   login(model: UserForLoginDTO) {
     return this.http.post(this.baseUrl + 'login', model).pipe(
       map((response: any) => {
