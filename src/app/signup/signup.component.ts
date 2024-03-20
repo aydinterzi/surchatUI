@@ -24,8 +24,7 @@ export class SignupComponent implements OnInit {
       Validators.required,
       Validators.minLength(5),
       Validators.maxLength(20),
-    ]),
-    confirmPassword: new FormControl('', [Validators.required]),
+    ])
   });
   signUp() {
     this.authService.register(this.userForm.value).subscribe(
@@ -43,9 +42,7 @@ export class SignupComponent implements OnInit {
   get password() {
     return this.userForm.get('password');
   }
-  get confirmPassword() {
-    return this.userForm.get('confirmPassword');
-  }
+ 
   get email() {
     return this.userForm.get('email');
   }
